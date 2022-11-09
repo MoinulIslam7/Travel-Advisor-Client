@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext';
 
 
 const Register = () => {
     const [error, setError] = useState('');
     const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -44,7 +48,7 @@ const Register = () => {
         signInWithGoogle()
             .then((result) => {
                 const user = result.user;
-                console.log(user);
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.error("error : ", error);
@@ -62,19 +66,19 @@ const Register = () => {
                             <div className="form-control">
 
                                 <h2 className=" text-2xl font-bold">Full Name</h2>
-                                <input type="text" name='name' placeholder="Your Full Name" className="input-bordered p-4 text-green-900" required />
+                                <input type="text" name='name' placeholder="Your Full Name" className="input-bordered p-4 " required />
                             </div>
                             <div className="form-control">
                                 <h2 className=" text-2xl font-bold">Photo URL</h2>
-                                <input type="text" name='photoURL' placeholder="Your Photo URL" className="input-bordered p-4 text-green-900 " required />
+                                <input type="text" name='photoURL' placeholder="Your Photo URL" className="input-bordered p-4 " required />
                             </div>
                             <div className="form-control">
                                 <h2 className="text-2xl font-bold">Email</h2>
-                                <input type="email" name='email' placeholder="Your email" className="input-bordered p-4 text-green-900 " required />
+                                <input type="email" name='email' placeholder="Your email" className="input-bordered p-4 " required />
                             </div>
                             <div className="form-control">
                                 <h2 className="text-2xl font-bold">Password</h2>
-                                <input type="password" name='password' placeholder="password" className="input-bordered p-4 text-green-900 " required />
+                                <input type="password" name='password' placeholder="password" className="input-bordered p-4 " required />
                                 <div className=" mt-3">
                                     <h6 className='text-xl'>Already Have an Account? <Link to='/login' className=" text-xl link link-hover font-bold">Login Here</Link></h6>
                                 </div>

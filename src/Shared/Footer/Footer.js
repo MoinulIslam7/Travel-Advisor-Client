@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div>
+        <div className='mt-10'>
             <footer className="footer p-10  text-base-content">
             <div>
                 <span className="footer-title">Services</span>

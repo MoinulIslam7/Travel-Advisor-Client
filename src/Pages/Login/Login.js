@@ -43,11 +43,11 @@ const Login = () => {
                         <form onSubmit={handleSubmit} className="card-body">
                             <div className="form-control">
                                 <h2 className="text-2xl font-bold ">Email</h2>
-                                <input type="email" name='email' placeholder="email" className="input-bordered p-4 text-green-900 " required />
+                                <input type="email" name='email' placeholder="email" className="input-bordered p-4  " required />
                             </div>
                             <div className="form-control">
                                 <h2 className="text-2xl font-bold ">Password</h2>
-                                <input type="password" name='password' placeholder="password" className="input-bordered p-4 text-green-900 " required />
+                                <input type="password" name='password' placeholder="password" className="input-bordered p-4 " required />
                                 <div className=" mt-3">
                                     <h6 className='text-xl'>Haven't any Account? <Link to='/register' className=" text-xl link link-hover font-bold">Register Here</Link></h6>
                                 </div>
