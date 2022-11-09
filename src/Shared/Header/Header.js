@@ -29,7 +29,7 @@ const Header = () => {
                                 user?.uid
                                     ?
                                     <>
-                                        <Link className="btn btn-ghost normal-case text-xl" to='/'>My Reviews</Link>
+                                        <Link className="btn btn-ghost normal-case text-xl" to='/MyReviews'>My Reviews</Link>
                                         <Link className="btn btn-ghost normal-case text-xl" to='/'>Add Service</Link>
                                         <Link onClick={handleSignOut} className="btn btn-ghost normal-case text-xl mt-0">Sign Out</Link>
                                     </>
@@ -60,7 +60,7 @@ const Header = () => {
                         user?.uid
                             ?
                             <>
-                                <Link className="btn btn-ghost normal-case text-xl" to='/'>My Reviews</Link>
+                                <Link className="btn btn-ghost normal-case text-xl" to='/MyReviews'>My Reviews</Link>
                                 <Link className="btn btn-ghost normal-case text-xl" to='/'>Add Service</Link>
                                 <button onClick={handleSignOut} className="btn btn-ghost normal-case text-xl mt-0">Sign Out</button>
                             </>
