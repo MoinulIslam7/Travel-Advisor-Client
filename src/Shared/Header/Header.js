@@ -14,7 +14,7 @@ const Header = () => {
             .catch(error => console.error(error));
     }
     return (
-        <div className="navbar bg-blue-400">
+        <div className="navbar bg-blue-500">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -3,7 +3,7 @@ import { AuthContext } from '../../Contexts/UserContext';
 
 const MyReviewCard = ({ review, handleDelete }) => {
     const { user } = useContext(AuthContext);
-    const { _id, name, email, price, message, service } = review;
+    const { _id, name,title, email, ratings, message, service } = review;
 
 
     const [reviewService, setReviewService] = useState({});
@@ -15,7 +15,8 @@ const MyReviewCard = ({ review, handleDelete }) => {
     }, [service])
 
     return (
-        <tr>
+         (
+            <tr>
             <th></th>
             <td>
                 <div className="flex items-center space-x-3">
@@ -36,9 +37,9 @@ const MyReviewCard = ({ review, handleDelete }) => {
                 </div>
             </td>
             <td>
-                {name}
+                <h2>{title}</h2>
                 <br />
-                <span className="badge badge-ghost badge-sm">${price}</span>
+                <span className="badge badge-ghost badge-sm">ratings: {ratings}</span>
             </td>
             <td>{message}</td>
             <th>
@@ -48,6 +49,7 @@ const MyReviewCard = ({ review, handleDelete }) => {
                 </label>
             </th>
         </tr>
+        )
     );
 };
 
