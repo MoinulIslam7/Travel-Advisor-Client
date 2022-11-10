@@ -17,20 +17,28 @@ const MyReviews = () => {
     }, [user?.email])
 
     const handleDelete = (id) => {
-        const proceed = window.confirm('Are you sure, you want to delete this review');
-        if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire("Deleted Successfully");
-                        const remaining = reviews.filter(rev => rev._id !== id);
-                        setReviews(remaining);
-                    }
+        Swal.fire({
+            title: 'Do you want to Delete the review?',
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/reviews/${id}`, {
+                    method: 'DELETE'
                 })
-        }
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+
+                            const remaining = reviews.filter(rev => rev._id !== id);
+                            setReviews(remaining);
+                        }
+                    })
+                Swal.fire("Deleted Successfully");
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
     }
     const handleEdit = (id) => {
         fetch(`http://localhost:5000/reviews/${id}`, {

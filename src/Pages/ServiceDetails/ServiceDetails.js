@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Contexts/UserContext';
+import useTitle from '../../Hooks/UseTitle';
 import ServiceReview from '../ServiceReview/ServiceReview';
 
 const ServiceDetails = () => {
     const { _id, image, title, price, ratings, details } = useLoaderData();
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    useTitle('Travel Advisor: ServiceDetails')
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews/${_id}`
@@ -85,12 +87,7 @@ const ServiceDetails = () => {
             </div>
             <div>
                 {
-                    user?.uid
-                        ?
-                        <>
-                            <button>Please<Link className="btn btn-ghost normal-case text-xl" to='/MyReviews'>Login</Link>To add a review</button>
-                        </>
-                        :
+                    user?.uid ?
                         <>
                             <form onSubmit={handleReview} className='border-2 rounded-xl p-5 shadow-2xl mb-5'>
                                 <h2 className='text-4xl text-center font-bold mb-4'>Add a review on this Service</h2>
@@ -101,8 +98,13 @@ const ServiceDetails = () => {
                                     <input name='ratings' type="text" placeholder="ratings" className="input input-bordered w-full" />
                                 </div>
                                 <textarea name='message' className="textarea textarea-bordered my-4 w-full h-40" placeholder="Your review" required></textarea>
-                                <button className="btn btn-wide bg-blue-600 text-xl">Add Review</button>
+                                <button className="btn btn-wide bg-blue-600 mb-10 text-xl">Add Review</button>
                             </form>
+
+                        </>
+                        :
+                        <>
+                            <button>Please<Link className="btn btn-ghost normal-case text-xl" to='/login'>Login</Link>To add a review</button>
                         </>
                 }
             </div>

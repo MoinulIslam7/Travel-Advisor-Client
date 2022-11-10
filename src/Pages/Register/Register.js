@@ -1,17 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext';
 import useTitle from '../../Hooks/UseTitle';
 
 
 const Register = () => {
     const [error, setError] = useState('');
-    const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     useTitle('Travel advisor: Register')
-
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -46,16 +42,7 @@ const Register = () => {
             })
     }
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then((result) => {
-                const user = result.user;
-                navigate(from, { replace: true });
-            })
-            .catch((error) => {
-                console.error("error : ", error);
-            })
-    }
+    
     return (
         <div className=''>
             <div className="hero min-h-screen">
@@ -93,9 +80,7 @@ const Register = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                         </form>
-                        <div className='flex justify-center mb-3'>
-                                <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success"> Sign in with Google</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

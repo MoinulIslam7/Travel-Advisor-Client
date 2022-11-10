@@ -4,10 +4,10 @@ import { AuthContext } from '../../Contexts/UserContext';
 import useTitle from '../../Hooks/UseTitle';
 
 const Login = () => {
-
+    const {signInWithGoogle} = useContext(AuthContext)
     const { signIn } = useContext(AuthContext);
-    const navigate = useNavigate();
     const [error, setError] = useState('');
+    const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
     useTitle('Travel advisor: Login')
@@ -31,6 +31,16 @@ const Login = () => {
             .catch((error) => {
                 console.error("error : ", error);
                 setError(error.message);
+            })
+    }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                const user = result.user;
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.error("error : ", error);
             })
     }
 
@@ -61,6 +71,9 @@ const Login = () => {
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        <div className='flex justify-center mb-3'>
+                                <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success"> Sign in with Google</button>
+                        </div>
                     </div>
                 </div>
             </div>

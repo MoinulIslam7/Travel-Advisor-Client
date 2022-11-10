@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 
 const ServiceReview = ({ review }) => {
-    console.log(review);
     const { name, photoURL, message,ratings } = review;
     return (
         <div className="flex mb-7 mx-20">

@@ -45,6 +45,7 @@ const MyReviewCard = ({ review, handleDelete, handleEdit }) => {
             <th>
                 <label>
                     <button onClick={() => handleEdit(_id)} className='btn btn-active btn-primary mx-3'>Edit</button>
+                    
                     <button onClick={() => handleDelete(_id)} className='btn btn-active btn-secondary'>Delete</button>
                 </label>
             </th>
