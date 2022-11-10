@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Contexts/UserContext';
 
-const MyReviewCard = ({ review, handleDelete }) => {
+const MyReviewCard = ({ review, handleDelete, handleEdit }) => {
     const { user } = useContext(AuthContext);
     const { _id, name,title, email, ratings, message, service } = review;
 
@@ -37,14 +37,14 @@ const MyReviewCard = ({ review, handleDelete }) => {
                 </div>
             </td>
             <td>
-                <h2>{title}</h2>
+                <h2> Service Name: {title}</h2>
                 <br />
                 <span className="badge badge-ghost badge-sm">ratings: {ratings}</span>
             </td>
             <td>{message}</td>
             <th>
                 <label>
-                    <button className='btn btn-active btn-primary mx-3'>Edit</button>
+                    <button onClick={() => handleEdit(_id)} className='btn btn-active btn-primary mx-3'>Edit</button>
                     <button onClick={() => handleDelete(_id)} className='btn btn-active btn-secondary'>Delete</button>
                 </label>
             </th>

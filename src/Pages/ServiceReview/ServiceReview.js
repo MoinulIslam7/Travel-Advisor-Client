@@ -4,7 +4,7 @@ const ServiceReview = ({ review }) => {
     console.log(review);
     const { name, photoURL, message,ratings } = review;
     return (
-        <div className="flex mb-7">
+        <div className="flex mb-7 mx-20">
             <div>
                 <img src={photoURL} alt="" className="rounded-circle w-20 h-20" />
                 <h2>{name}</h2>

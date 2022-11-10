@@ -80,7 +80,7 @@ const ServiceDetails = () => {
             </div>
 
             <form onSubmit={handleReview} className='border-2 rounded-xl p-5 shadow-2xl mb-5'>
-                <h2 className='text-4xl text-center font-bold mb-4'>Reviews on this Service</h2>
+                <h2 className='text-4xl text-center font-bold mb-4'>Add a review on this Service</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <input name='name' type="text" placeholder="Your Name" defaultValue={user?.displayName} className="input input-bordered w-full" />
                     <input name='email' type="email" placeholder="Your Email" defaultValue={user?.email} className="input input-bordered w-full" readOnly />

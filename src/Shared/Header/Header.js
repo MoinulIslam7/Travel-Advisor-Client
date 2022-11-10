@@ -30,7 +30,7 @@ const Header = () => {
                                     ?
                                     <>
                                         <Link className="btn btn-ghost normal-case text-xl" to='/MyReviews'>My Reviews</Link>
-                                        <Link className="btn btn-ghost normal-case text-xl" to='/'>Add Service</Link>
+                                        <Link className="btn btn-ghost normal-case text-xl" to='/AddNewService'>Add Service</Link>
                                         <Link onClick={handleSignOut} className="btn btn-ghost normal-case text-xl mt-0">Sign Out</Link>
                                     </>
                                     :
@@ -61,7 +61,7 @@ const Header = () => {
                             ?
                             <>
                                 <Link className="btn btn-ghost normal-case text-xl" to='/MyReviews'>My Reviews</Link>
-                                <Link className="btn btn-ghost normal-case text-xl" to='/'>Add Service</Link>
+                                <Link className="btn btn-ghost normal-case text-xl" to='/AddNewService'>Add Service</Link>
                                 <button onClick={handleSignOut} className="btn btn-ghost normal-case text-xl mt-0">Sign Out</button>
                             </>
                             :
