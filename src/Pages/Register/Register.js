@@ -1,16 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext';
 import useTitle from '../../Hooks/UseTitle';
 
 
 const Register = () => {
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const { createUser, updateUserProfile } = useContext(AuthContext);
     useTitle('Travel advisor: Register')
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -23,6 +27,7 @@ const Register = () => {
                 const user = result.user;
                 form.reset();
                 setError('');
+                navigate(from, { replace: true });
                 handleUserUpdateProfile(name, photoURL);
             })
             .catch((error) => {
@@ -42,7 +47,7 @@ const Register = () => {
             })
     }
 
-    
+
     return (
         <div className=''>
             <div className="hero min-h-screen">
@@ -80,7 +85,7 @@ const Register = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>

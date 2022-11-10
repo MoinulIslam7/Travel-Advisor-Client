@@ -30,4 +30,6 @@ A list of platform used to build the project:
 * Visual Stdio Code
 * Firebase
 * Vercel website
+
+## Database
 * MongoDb

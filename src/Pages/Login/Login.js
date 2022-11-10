@@ -57,10 +57,28 @@ const Login = () => {
         signInWithGoogle()
             .then((result) => {
                 const user = result.user;
-                navigate(from, { replace: true });
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('https://travel-advisor-server.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('travel-token', data.token);
+                        navigate(from, { replace: true });
+                    })
+                    .catch(error => console.error(error))
+
+
             })
             .catch((error) => {
                 console.error("error : ", error);
+                setError(error.message);
             })
     }
 
