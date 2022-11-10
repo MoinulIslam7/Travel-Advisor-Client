@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Contexts/UserContext';
 import useTitle from '../../Hooks/UseTitle';
@@ -10,12 +10,14 @@ const ServiceDetails = () => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     useTitle('Travel Advisor: ServiceDetails')
+    const location = useLocation();
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews/${_id}`
         )
             .then(res => res.json())
             .then(data => {
+                
                 setReviews(data)
                 console.log(data)
             })
@@ -104,7 +106,7 @@ const ServiceDetails = () => {
                         </>
                         :
                         <>
-                            <button>Please<Link className="btn btn-ghost normal-case text-xl" to='/login'>Login</Link>To add a review</button>
+                           <h6 className='text-2xl mx-96 h-96 justify-center'>Please <Link to='/login' state={{ from: location }} replace className=" text-xl link bg-orange-600 link-hover p-4 rounded font-bold">Login Here</Link> for add a review</h6>
                         </>
                 }
             </div>

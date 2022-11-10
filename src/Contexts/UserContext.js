@@ -10,7 +10,10 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-
+    if(loading===true){
+        <h2>Loading...</h2>
+    }
+    
     const googleProvider = new GoogleAuthProvider();
 
     const createUser = (email, password) => {

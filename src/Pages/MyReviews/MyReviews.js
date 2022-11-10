@@ -93,7 +93,7 @@ const MyReviews = () => {
                         </table>
                     </>
                         :
-                        <h2 className='text-3xl text-center mb-8'>Empty!! No Reviews Were Added</h2>
+                        <h2 className='text-3xl text-center h-96 w-full mb-8 mt-8'>Empty!! No Reviews Were Added</h2>
                 }
             </div>
 
