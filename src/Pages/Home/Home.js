@@ -9,7 +9,7 @@ import Subscribe from './Subscribe/Subscribe';
 
 
 const Home = () => {
-    useTitle('Travel advisor: Home')
+    useTitle('Travel Advisor: Home')
     return (
         <div>
             <Banner></Banner>

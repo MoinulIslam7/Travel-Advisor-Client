@@ -3,12 +3,12 @@ import useTitle from '../../Hooks/UseTitle';
 import ServiceCard from '../Home/Services/ServiceCard';
 
 const AllServices = () => {
-    
+
     const [services, setServices] = useState([]);
     useTitle('Travel advisor: All Services');
 
     useEffect(() => {
-        fetch('http://localhost:5000/AllServices')
+        fetch('https://travel-advisor-server.vercel.app/AllServices')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

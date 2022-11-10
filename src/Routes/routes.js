@@ -35,7 +35,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/serviceDetails/:id',
                 element: <PublicRoutes><ServiceDetails></ServiceDetails></PublicRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/serviceDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://travel-advisor-server.vercel.app/serviceDetails/${params.id}`)
             },
             {
                 path: '/MyReviews',
@@ -45,18 +45,18 @@ export const routes = createBrowserRouter([
             {
                 path: '/reviews/:id',
                 element: <ServiceReview></ServiceReview>,
-                loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
-               
+                loader: ({ params }) => fetch(`https://travel-advisor-server.vercel.app/reviews/${params.id}`)
+
             },
             {
                 path: '/AddNewService',
                 element: <PrivateRoutes><AddNewService></AddNewService></PrivateRoutes>
-               
+
             },
             {
                 path: '/blog',
                 element: <Blog></Blog>
-               
+
             }
         ]
     },

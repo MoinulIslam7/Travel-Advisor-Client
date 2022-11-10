@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../../Hooks/UseTitle';
 import ServiceCard from './ServiceCard';
 
 const Services = () => {
     const [services, setServices] = useState([]);
-    
+    useTitle('Travel Advisor: Services');
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://travel-advisor-server.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

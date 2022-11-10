@@ -13,11 +13,11 @@ const ServiceDetails = () => {
     const location = useLocation();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews/${_id}`
+        fetch(`https://travel-advisor-server.vercel.app/reviews/${_id}`
         )
             .then(res => res.json())
             .then(data => {
-                
+
                 setReviews(data)
                 console.log(data)
             })
@@ -44,7 +44,7 @@ const ServiceDetails = () => {
             message
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://travel-advisor-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -67,12 +67,9 @@ const ServiceDetails = () => {
                 <figure><img src={image} alt="place" /></figure>
                 <div className="card-body mx-6">
                     <h2 className="card-title text-3xl">{title}</h2>
-                    <p className='font-bold text-orange-400'>Cost: {price}</p>
+                    <p className='font-bold text-orange-400'>Price: {price}</p>
                     <p className='font-bold text-orange-400'>Ratings: {ratings}</p>
                     <p className='text-justify'><span className='font-bold'>Description:</span> {details}</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div>
                 </div>
             </div>
             <div className='mb-10'>
@@ -106,7 +103,7 @@ const ServiceDetails = () => {
                         </>
                         :
                         <>
-                           <h6 className='text-2xl mx-96 h-96 justify-center'>Please <Link to='/login' state={{ from: location }} replace className=" text-xl link bg-orange-600 link-hover p-4 rounded font-bold">Login Here</Link> for add a review</h6>
+                            <h6 className='text-2xl mx-96 h-96 justify-center'>Please <Link to='/login' state={{ from: location }} replace className=" text-xl link bg-orange-600 link-hover p-4 rounded font-bold">Login Here</Link> for add a review</h6>
                         </>
                 }
             </div>

@@ -5,16 +5,27 @@ import useTitle from '../../Hooks/UseTitle';
 import MyReviewCard from '../MyReviews/MyReviewCard'
 
 const MyReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, signOut } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     useTitle('Travel advisor: MyReviews');
     console.log(reviews)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [user?.email])
+        fetch(`https://travel-advisor-server.vercel.app/reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('travel-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return signOut();
+                }
+                return res.json();
+            })
+            .then(data => {
+                setReviews(data)
+            })
+    }, [user?.email, signOut])
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -23,7 +34,7 @@ const MyReviews = () => {
             confirmButtonText: 'Delete',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/reviews/${id}`, {
+                fetch(`https://travel-advisor-server.vercel.app/reviews/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -41,7 +52,7 @@ const MyReviews = () => {
         })
     }
     const handleEdit = (id) => {
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://travel-advisor-server.vercel.app/reviews/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

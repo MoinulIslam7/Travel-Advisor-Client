@@ -34,6 +34,7 @@ const UserContext = ({ children }) => {
 
     const logOut = () => {
         setLoading(true);
+        localStorage.removeItem('travel-token')
         return signOut(auth);
     }
     const updateUserProfile = (profile) =>{

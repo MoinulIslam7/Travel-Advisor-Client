@@ -4,14 +4,14 @@ import { AuthContext } from '../../Contexts/UserContext';
 import useTitle from '../../Hooks/UseTitle';
 
 const Login = () => {
-    const {signInWithGoogle} = useContext(AuthContext)
+    const { signInWithGoogle } = useContext(AuthContext)
     const { signIn } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname;
+    const from = location.state?.from?.pathname || '/';
     console.log(from);
-    useTitle('Travel advisor: Login')
+    useTitle('Travel Advisor: Login')
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,10 +24,29 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log("Login user : ", user);
                 form.reset();
                 setError('');
-                navigate(from, { replace: true });
+
+
+                // get jwt token
+                const currentUser = {
+                    email: user.email
+                }
+                fetch('https://travel-advisor-server.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('travel-token', data.token);
+                        navigate(from, { replace: true });
+                    })
+                    .catch(error => console.error(error))
+
+
             })
             .catch((error) => {
                 console.error("error : ", error);
@@ -73,7 +92,7 @@ const Login = () => {
                             </div>
                         </form>
                         <div className='flex justify-center mb-3'>
-                                <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success"> Sign in with Google</button>
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline btn-success"> Sign in with Google</button>
                         </div>
                     </div>
                 </div>
