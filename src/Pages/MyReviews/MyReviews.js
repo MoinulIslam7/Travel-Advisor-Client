@@ -51,27 +51,6 @@ const MyReviews = () => {
             }
         })
     }
-    const handleEdit = (id) => {
-        fetch(`https://travel-advisor-server.vercel.app/reviews/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ status: 'Approved' })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
-                    const remaining = reviews.filter(rev => rev._id !== id);
-                    const approving = reviews.find(rev => rev._id === id);
-                    approving.status = 'Approved';
-                    const newReview = [...remaining, approving];
-                    setReviews(newReview);
-                }
-            })
-    }
-
 
     return (
         <div className="overflow-x-auto w-full my-12">
@@ -97,7 +76,6 @@ const MyReviews = () => {
                                         key={review._id}
                                         review={review}
                                         handleDelete={handleDelete}
-                                        handleEdit={handleEdit}
                                     ></MyReviewCard>)
                                 }
                             </tbody>

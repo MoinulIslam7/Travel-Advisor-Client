@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext';
 import useTitle from '../../Hooks/UseTitle';
 
-const MyReviewCard = ({ review, handleDelete, handleEdit }) => {
+const MyReviewCard = ({ review, handleDelete }) => {
     const { user } = useContext(AuthContext);
     const { _id, name, title, email, ratings, message, service } = review;
     useTitle('Travel Advisor: MyReviewCard')
@@ -45,7 +46,7 @@ const MyReviewCard = ({ review, handleDelete, handleEdit }) => {
                 <td>{message}</td>
                 <th>
                     <label>
-                        <button onClick={() => handleEdit(_id)} className='btn btn-active btn-primary mx-3'>Edit</button>
+                        <Link to={`/updateReview/${_id}`} className='btn btn-active btn-primary mx-3'>Update</Link>
 
                         <button onClick={() => handleDelete(_id)} className='btn btn-active btn-secondary'>Delete</button>
                     </label>
