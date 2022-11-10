@@ -17,7 +17,7 @@ const ServiceDetails = () => {
                 setReviews(data)
                 console.log(data)
             })
-    }, [])
+    }, [reviews])
 
     const handleReview = (event) => {
         event.preventDefault();
@@ -38,7 +38,7 @@ const ServiceDetails = () => {
             photoURL,
             ratings,
             message
-    }
+        }
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
@@ -71,25 +71,42 @@ const ServiceDetails = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <h2 className='text-3xl text-center'>All reviews for this services: </h2>
-                {
-                    reviews.map((review) => <ServiceReview key={review._id} review={review}></ServiceReview>)
+            <div className='mb-10'>
+                {reviews.length > 0 ?
+                    <>
+                        <h2 className='text-3xl text-center'>All reviews for this services: </h2>
+                        {
+                            reviews.map((review) => <ServiceReview key={review._id} review={review}></ServiceReview>)
+                        }
+                    </>
+                    :
+                    <h2 className='text-2xl text-center'>No Reviews Found !!</h2>
                 }
-
+            </div>
+            <div>
+                {
+                    user?.uid
+                        ?
+                        <>
+                            <button>Please<Link className="btn btn-ghost normal-case text-xl" to='/MyReviews'>Login</Link>To add a review</button>
+                        </>
+                        :
+                        <>
+                            <form onSubmit={handleReview} className='border-2 rounded-xl p-5 shadow-2xl mb-5'>
+                                <h2 className='text-4xl text-center font-bold mb-4'>Add a review on this Service</h2>
+                                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                                    <input name='name' type="text" placeholder="Your Name" defaultValue={user?.displayName} className="input input-bordered w-full" />
+                                    <input name='email' type="email" placeholder="Your Email" defaultValue={user?.email} className="input input-bordered w-full" readOnly />
+                                    <input name='photoURL' type="text" placeholder="Your Photo" defaultValue={user?.photoURL} className="input input-bordered w-full" readOnly />
+                                    <input name='ratings' type="text" placeholder="ratings" className="input input-bordered w-full" />
+                                </div>
+                                <textarea name='message' className="textarea textarea-bordered my-4 w-full h-40" placeholder="Your review" required></textarea>
+                                <button className="btn btn-wide bg-blue-600 text-xl">Add Review</button>
+                            </form>
+                        </>
+                }
             </div>
 
-            <form onSubmit={handleReview} className='border-2 rounded-xl p-5 shadow-2xl mb-5'>
-                <h2 className='text-4xl text-center font-bold mb-4'>Add a review on this Service</h2>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-                    <input name='name' type="text" placeholder="Your Name" defaultValue={user?.displayName} className="input input-bordered w-full" />
-                    <input name='email' type="email" placeholder="Your Email" defaultValue={user?.email} className="input input-bordered w-full" readOnly />
-                    <input name='photoURL' type="text" placeholder="Your Photo" defaultValue={user?.photoURL} className="input input-bordered w-full" readOnly />
-                    <input name='ratings' type="text" placeholder="ratings" className="input input-bordered w-full" />
-                </div>
-                <textarea name='message' className="textarea textarea-bordered my-4 w-full h-40" placeholder="Your review" required></textarea>
-                <button className="btn btn-wide bg-blue-600 text-xl">Add Review</button>
-            </form>
 
         </div>
     );

@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/UserContext';
+import useTitle from '../../Hooks/UseTitle';
 
 
 const Register = () => {
     const [error, setError] = useState('');
     const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+    useTitle('Travel advisor: Register')
 
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'

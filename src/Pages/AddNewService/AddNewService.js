@@ -1,7 +1,9 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import useTitle from '../../Hooks/UseTitle';
 
 const AddNewService = () => {
+    useTitle('Travel advisor: AddNewService')
     const handleAddService = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -39,9 +41,9 @@ const AddNewService = () => {
 
     }
     return (
-        <form onSubmit={handleAddService} className='border-2 rounded-xl p-5 shadow-2xl my-5'>
-            <h2 className='text-4xl text-blue-600 text-center font-bold mb-4'>Add Tourist Place</h2>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+        <form onSubmit={handleAddService} className='border-2 w-96 mx-auto justify-center rounded-xl p-5 shadow-2xl my-5'>
+            <h2 className='text-4xl text-blue-600 text-center font-bold mb-4'>Add a New Service</h2>
+            <div className='grid grid-cols-1gap-4'>
                 <input name='title' type="text" placeholder="title" className="input input-bordered w-full" required />
                 <input name='image' type="text" placeholder="Photo url" className="input input-bordered w-full" required />
                 <input name='price' type="text" placeholder="Cost" className="input input-bordered w-full" required />

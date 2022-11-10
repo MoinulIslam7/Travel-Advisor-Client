@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Contexts/UserContext';
+import useTitle from '../../Hooks/UseTitle';
 import MyReviewCard from '../MyReviews/MyReviewCard'
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
+    useTitle('Travel advisor: MyReviews');
     console.log(reviews)
 
     useEffect(() => {
@@ -55,31 +57,38 @@ const MyReviews = () => {
     return (
         <div className="overflow-x-auto w-full my-12">
             <div>
+                {
+                    reviews.length > 0 ? <>
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Image</th>
+                                    <th>User Info</th>
+                                    <th>Title and rating</th>
+                                    <th>Message</th>
+                                    <td></td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <div className='text-2xl text-center'>Total reviews: {reviews.length}</div>
+                                {
+                                    reviews.map(review => <MyReviewCard
+                                        key={review._id}
+                                        review={review}
+                                        handleDelete={handleDelete}
+                                        handleEdit={handleEdit}
+                                    ></MyReviewCard>)
+                                }
+                            </tbody>
+                        </table>
+                    </>
+                        :
+                        <h2 className='text-3xl text-center mb-8'>Empty!! No Reviews Were Added</h2>
+                }
             </div>
-            <table className="table w-full">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Image</th>
-                        <th>User Info</th>
-                        <th>Title and rating</th>
-                        <th>Message</th>
-                        <td></td>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <div className='text-2xl text-center'>Total reviews: {reviews.length}</div>
-                    {
-                        reviews.map(review => <MyReviewCard
-                            key={review._id}
-                            review={review}
-                            handleDelete={handleDelete}
-                            handleEdit={handleEdit}
-                        ></MyReviewCard>)
-                    }
-                </tbody>
-            </table>
+
         </div>
     );
 };
