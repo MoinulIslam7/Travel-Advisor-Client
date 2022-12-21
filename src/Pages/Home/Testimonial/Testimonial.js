@@ -10,7 +10,7 @@ const Testimonial = () => {
         {
             _id: 1,
             name: "Roberto Carlos",
-            reviews: "It is a very good platform for resale clothing",
+            reviews: "It is a very good platform for Traveling",
             location: "California",
             img: people1
 
@@ -18,7 +18,7 @@ const Testimonial = () => {
         {
             _id: 2,
             name: "Winson Herry",
-            reviews: "This is a best platform for resale clothing",
+            reviews: "This is a best platform for Travel. The Travel Advisor is great!",
             location: "Germany",
             img: people2
 
@@ -26,7 +26,7 @@ const Testimonial = () => {
         {
             _id: 3,
             name: "Hilary Clinton",
-            reviews: "Awesome Plat from and best services",
+            reviews: "Awesome Plat from and best services.",
             location: "New York",
             img: people3
 
