@@ -6,7 +6,7 @@ import {routes} from './Routes/routes'
 function App() {
   
   return (
-    <div data-theme="synthwave" >
+    <div >
       <RouterProvider router={routes}></RouterProvider>
     </div>
   );
